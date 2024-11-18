@@ -686,13 +686,13 @@ a.buttonlink:hover{
 table{
 	border-collapse:collapse;
 	}
-tbody {border: blue 5px solid;
+tbody {border: black 5px solid;
 	font-size:0.5em;
 	text-align:center;
 }
 tr{
 	border: #AFFCF8 1px solid;
-	background-color:#26416B;
+	background-color:#000000;
 }
 th{
 	background-color:blue;
@@ -737,13 +737,13 @@ But I think that some more breathing space is good:)
 table{
 	border-collapse:collapse;
 	}
-tbody {border: blue 5px solid;
+tbody {border: black 5px solid;
 	font-size:0.8em;
 	text-align:center;
 }
 tr{
 	border: #AFFCF8 1px solid;
-	background-color:#26416B;
+	background-color:#000000;
 }
 th{
 	background-color:blue;
@@ -789,13 +789,13 @@ table{
 	border-collapse:collapse;
 	}
 tbody{
-	border: blue 5px solid;
+	border: black 5px solid;
 	font-size:1.1em;
 	text-align:center;	
 }
 tr{
 	border: #AFFCF8 1px solid;
-	background-color:#26416B;
+	background-color:#000000;
 }
 th{
 	background-color:blue;
