@@ -450,7 +450,7 @@ div.youtube-play:hover{
     background-size: cover;
     position: relative;
     top: 10px;
-    filter: drop-shadow(0px 5px 10px );
+    filter: drop-shadow(0px 3px 3px #E4FF00);
     animation: rotar 10s linear infinite;
 }
 
