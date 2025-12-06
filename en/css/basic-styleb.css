@@ -474,13 +474,13 @@ div.youtube-play:hover{
 /* añadido para dar color amarillo a los links sin raya abajo */
 a {
 	text-decoration: none;
-	color: #FFFF00;
+	color: #F2FA0F;
 }
-/* añadido para dar color amarillo a los links sin raya abajo */
+/* añadido para dar color verde a los links sin raya abajo */
 
 a:hover {
 	text-decoration: none;
-	color: #FF0000;
+	color: #35FA0F;
 }
 
 /* Box sizing. Awesome thing. Read about it here: https://www.w3schools.com/cssref/css3_pr_box-sizing.asp */
@@ -727,7 +727,7 @@ LARGER MOBILE DEVICES
 This is for mobile devices with a bit larger screens.
 */
 @media only screen and (min-width: 265px) {
-.play a:hover {display:block; text-decoration: none; background-color:#BD1515;}
+.play a:hover {display:block; text-decoration: none; background-color:#FFA56E;}
 
 }
 @media only screen and (min-width: 481px) {
