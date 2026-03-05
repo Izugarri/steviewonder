@@ -1,8 +1,14 @@
-import { serve } from "https://deno.land/std@0.116.0/http/server.ts";
-import staticFiles from "https://deno.land/x/static_files@1.1.6/mod.ts";
+import { serveDir } from "jsr:@std/http/file-server";
 
-const serveFiles = (req: Request) => staticFiles('./')({ 
-    request: req, 
-    respondWith: (r: Response) => r 
-})
-serve((req) => serveFiles(req), { addr: ':3000' });
+Deno.serve((req) => {
+  const pathname = new URL(req.url).pathname;
+
+  // Servir archivos estáticos desde una carpeta llamada "x"
+  if (pathname.startsWith("/")) {
+    return serveDir(req, {
+      fsRoot: "./", // Directorio donde están tus archivos .html y .css
+    });
+  }
+
+  return new Response("404: Not Found", { status: 404 });
+});
