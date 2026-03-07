@@ -3,23 +3,24 @@ name: Sync to Another Repo
 on:
   push:
     branches:
-      - gh-pages # o la rama que quieras monitorizar
+      - main  # Rama de origen que activa la sincronización
 
 jobs:
-  sync:
+  push-to-repo:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Source Repo
-        uses: actions/checkout@v3
+      - name: Checkout del repo original
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0 # Asegura traer todo el historial
 
-      - name: Push to Destination Repo
+      - name: Push to destination repository
+        uses: cpina/github-action-push-to-another-repository@main
         env:
-          PAT: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-          DEST_REPO: ${{ secrets.DESTINATION_REPO }}
-        run: |
-          git remote add target https://x-access-token:$PAT@://github.com/izugarri/steviewonder.git
-          git fetch target
-          # Esto intenta hacer un merge rápido. Si hay conflictos, fallará.
-          git push target gh-pages:gh-pages
+          API_TOKEN_GITHUB: ${{ secrets.PERSONAL_ACCESS_TOKE }}
+        with:
+          source-directory: '.' # Carpeta a enviar
+          destination-github-username: 'Izugarri'
+          destination-repository-name: 'Izugarri/steviewonder'
+          user-email: 'steviewonder@steviewonder.es'
+          target-branch: 'gh-pages' # Rama de destino
