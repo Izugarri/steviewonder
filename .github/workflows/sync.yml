@@ -3,7 +3,7 @@ name: Sync to Another Repo
 on:
   push:
     branches:
-      - gh-pages  # Rama de origen que activa la sincronización
+      - main  # Rama de origen que activa la sincronización
 
 jobs:
   push-to-repo:
