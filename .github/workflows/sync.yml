@@ -1,0 +1,26 @@
+name: Sync to Another Repo
+
+on:
+  push:
+    branches:
+      - main  # Rama de origen que activa la sincronización
+
+jobs:
+  push-to-repo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout del repo original
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Asegura traer todo el historial
+
+      - name: Push to destination repository
+        uses: cpina/github-action-push-to-another-repository@main
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.PERSONAL_ACCESS_TOKE }}
+        with:
+          source-directory: '.' # Carpeta a enviar
+          destination-github-username: 'Izugarri'
+          destination-repository-name: 'Izugarri/steviewonder'
+          user-email: 'steviewonder@steviewonder.es'
+          target-branch: 'gh-pages' # Rama de destino
