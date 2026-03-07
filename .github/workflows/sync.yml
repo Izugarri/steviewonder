@@ -1,1 +1,25 @@
+name: Sync to Another Repo
 
+on:
+  push:
+    branches:
+      - gh-pages # o la rama que quieras monitorizar
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source Repo
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # Asegura traer todo el historial
+
+      - name: Push to Destination Repo
+        env:
+          PAT: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          DEST_REPO: ${{ secrets.DESTINATION_REPO }}
+        run: |
+          git remote add target https://x-access-token:$PAT@://github.com
+          git fetch target
+          # Esto intenta hacer un merge rápido. Si hay conflictos, fallará.
+          git push target gh-pages:gh-pages
