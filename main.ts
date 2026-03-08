@@ -4,27 +4,33 @@ Deno.serve(async (req) => {
   const url = new URL(req.url);
   const pathname = url.pathname;
 
+  // 1. Regla: Imágenes/Activos inmutables (Caché larga: 1 año)
+  if (pathname.startsWith("/Control/")) {
+    const res = await serveDir(req, {
+      fsRoot: "./",
+      urlRoot: "./",
+    });
+    res.headers.set("Cache-Control", "public, max-age=5");
+    return res;
+  }
+
   // 2. Regla: CSS/JS (Caché media: 1 hora)
-  if (pathname.endsWith("Control.html") || pathname.endsWith(".js")) {
+  if (pathname.endsWith("Control*.*") || pathname.endsWith("Control.html")) {
     const res = await serveDir(req, {
       fsRoot: "./",
     });
-    res.headers.set("Cache-Control", "public, max-age=5", "Deno-CDN-Cache-Control", "public, s-maxage=6");
+    res.headers.set("Cache-Control", "public, max-age=4");
     return res;
   }
 
   // 3. Regla por defecto: HTML (No caché, verificar siempre)
   const res = await serveDir(req, {
-    fsRoot: "public",
+    fsRoot: "./",
     showIndex: true, // Sirve index.html automáticamente
   });
   res.headers.set("Cache-Control", "no-cache, no-store, must-revalidate");
   return res;
 });
-
-
-
-
 
 
 
