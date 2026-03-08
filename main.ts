@@ -10,7 +10,7 @@ Deno.serve(async (req) => {
       fsRoot: "./",
       urlRoot: "./",
     });
-    res.headers.set("Cache-Control", "public, max-age=6, immutable");
+    res.headers.set("Cache-Control", "public, max-age=5");
     return res;
   }
 
@@ -19,40 +19,15 @@ Deno.serve(async (req) => {
     const res = await serveDir(req, {
       fsRoot: "./",
     });
-    res.headers.set("Cache-Control", "public, max-age=3");
+    res.headers.set("Cache-Control", "public, max-age=6");
     return res;
   }
 
   // 3. Regla por defecto: HTML (No caché, verificar siempre)
   const res = await serveDir(req, {
-    fsRoot: "Control",
+    fsRoot: "./",
     showIndex: true, // Sirve index.html automáticamente
   });
   res.headers.set("Cache-Control", "no-cache, no-store, must-revalidate");
   return res;
-});
-
-
-
-
-
-
-
-
-
-
-
-import { serveDir } from "jsr:@std/http/file-server";
-
-Deno.serve((req) => {
-  const pathname = new URL(req.url).pathname;
-
-  // Servir archivos estáticos desde una carpeta llamada "x"
-  if (pathname.startsWith("/")) {
-    return serveDir(req, {
-      fsRoot: "./", // Directorio donde están tus archivos .html y .css
-    });
-  }
-
-  return new Response("404: Not Found", { status: 404 });
 });
