@@ -10,28 +10,27 @@ Deno.serve(async (req) => {
       fsRoot: "./",
       urlRoot: "./",
     });
-    res.headers.set("Cache-Control", "public, max-age=5");
+    res.headers.set("Cache-Control", "public, max-age=6, immutable");
     return res;
   }
 
   // 2. Regla: CSS/JS (Caché media: 1 hora)
-  if (pathname.endsWith("Control*.*") || pathname.endsWith("Control.html")) {
+  if (pathname.endsWith(".css") || pathname.endsWith(".js")) {
     const res = await serveDir(req, {
       fsRoot: "./",
     });
-    res.headers.set("Cache-Control", "public, max-age=4");
+    res.headers.set("Cache-Control", "public, max-age=3");
     return res;
   }
 
   // 3. Regla por defecto: HTML (No caché, verificar siempre)
   const res = await serveDir(req, {
-    fsRoot: "./",
+    fsRoot: "Control",
     showIndex: true, // Sirve index.html automáticamente
   });
   res.headers.set("Cache-Control", "no-cache, no-store, must-revalidate");
   return res;
 });
-
 
 
 
