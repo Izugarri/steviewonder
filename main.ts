@@ -1,9 +1,11 @@
 import { serveDir } from "jsr:@std/http/file-server";
 
-Deno.serve(async (req) => {
-  const url = new URL(req.url);
-  const pathname = url.pathname;
-
+Deno.serve((req) => {
+  return serveDir(req, {
+    fsRoot: "./", // Carpeta que contiene los archivos
+    showDirListing: true,
+  });
+}
   // 1. Regla: Imágenes/Activos inmutables (Caché larga: 1 año)
   if (pathname.startsWith("/Control/")) {
     const res = await serveDir(req, {
@@ -30,4 +32,5 @@ Deno.serve(async (req) => {
   });
   res.headers.set("Cache-Control", "public, max-age=60");
   return res;
-});
+}
+);
