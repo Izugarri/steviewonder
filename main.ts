@@ -10,16 +10,16 @@ Deno.serve(async (req) => {
       fsRoot: "Control",
       urlRoot: "Control",
     });
-    res.headers.set("Cache-Control", "public, max-age=5");
+    res.headers.set("Deno-CDN-Cache-Control", "public, max-age=2");
     return res;
   }
 
-  // 2. Regla: CSS/JS (Caché media: 1 hora)
-  if (pathname.endsWith(".css") || pathname.endsWith(".js")) {
+  // 2. Regla: CSS/JS (Caché media: día)
+  if (pathname.endsWith(".css") || pathname.endsWith(".js") || pathname.endsWith(".jpg") || pathname.endsWith(".gif")) {
     const res = await serveDir(req, {
       fsRoot: "./",
     });
-    res.headers.set("Cache-Control", "public, max-age=3600");
+    res.headers.set("Cache-Control", "public, max-age=84600");
     return res;
   }
 
@@ -28,6 +28,6 @@ Deno.serve(async (req) => {
     fsRoot: "./",
     showIndex: true, // Sirve index.html automáticamente
   });
-  res.headers.set("Cache-Control", "no-cache, no-store, must-revalidate");
+  res.headers.set("Cache-Control", "public, max-age=3600");
   return res;
 });
