@@ -7,8 +7,8 @@ Deno.serve(async (req) => {
   // 1. Regla: Imágenes/Activos inmutables (Caché larga: 1 año)
   if (pathname.startsWith("/Control/")) {
     const res = await serveDir(req, {
-      fsRoot: "./",
-      urlRoot: "./",
+      fsRoot: "Control",
+      urlRoot: "Control",
     });
     res.headers.set("Deno-CDN-Cache-Control", "public, no-cache");
     return res;
