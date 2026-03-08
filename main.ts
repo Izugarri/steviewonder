@@ -5,7 +5,7 @@ Deno.serve(async (req) => {
   const pathname = url.pathname;
 
   // 1. Regla: Imágenes/Activos inmutables (Caché larga: 1 año)
-  if (pathname.startsWith("Control")) {
+  if (pathname.startsWith("/Control/")) {
     const res = await serveDir(req, {
       fsRoot: "./",
       urlRoot: "./",
