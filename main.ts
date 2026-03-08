@@ -3,9 +3,7 @@ import { serveDir } from "jsr:@std/http/file-server";
 Deno.serve((req) => {
   return serveDir(req, {
     fsRoot: "./", // Carpeta que contiene los archivos
-    showDirListing: true,
-  });
-;
+    showDirListing: true;
 
   // 1. Regla: Imágenes/Activos inmutables (Caché larga: 1 año)
   if (pathname.startsWith("/Control/")) {
