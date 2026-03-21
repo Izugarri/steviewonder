@@ -1,9 +1,9 @@
+# Forzar el uso de otro index en este directorio
 DirectoryIndex index.html
 RewriteEngine on
 <IfModule mod_rewrite.c>
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^([^\.]+)$ $1.html [NC,L]
-ErrorDocument 404 http://www.steviewonder.es/paginadeerror.html
+ErrorDocument 404 http://www.steviewonder.es/en/paginadeerror.html
 </IfModule>
-
 
