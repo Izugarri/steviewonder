@@ -1,8 +1,12 @@
 DirectoryIndex index.html
-RewriteEngine on
+RewriteEngine On
 <IfModule mod_rewrite.c>
+# Servir el contenido sin .html internamente
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^([^\.]+)$ $1.html [NC,L]
+# Redirigir de .html a sin .html en Always funciona pero fuerza https
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s([^.]+)\.html [NC]
+RewriteRule ^ %1 [R=301,L]
 ErrorDocument 404 http://www.steviewonder.es/paginadeerror.html
 </IfModule>
 
