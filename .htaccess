@@ -1,6 +1,21 @@
+DirectoryIndex index.html
 RewriteEngine On
 <IfModule mod_rewrite.c>
+# 1. Redirigir externamente archivos .html solicitados por el usuario
+# Esto quita el .html de la barra de direcciones
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s([^.]+)\.html [NC]
+RewriteRule ^ %1 [R=301,L,NE]
+
+# 2. Reescritura interna: Servir el archivo .html sin mostrar la extensión en la URL
+# Si no es un archivo físico...
 RewriteCond %{REQUEST_FILENAME} !-f
+# Y no es una carpeta física...
+RewriteCond %{REQUEST_FILENAME} !-d
+# Y existe la versión .html...
+RewriteCond %{REQUEST_FILENAME}.html -f
+# Entonces, reescribir internamente
 RewriteRule ^([^\.]+)$ $1.html [NC,L]
-ErrorDocument 404 https://www.steviewonder.es/paginadeerror.html
+ErrorDocument 404 http://www.steviewonder.es/paginadeerror.html
 </IfModule>
+
+
