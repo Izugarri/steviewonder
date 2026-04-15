@@ -68,7 +68,7 @@
 <div class="row" style="margin-bottom:0px">
 <div class="grid_12" style="padding:5px ;margin:0px 0px 0px 0px; background-color:rgba(36, 33, 66, 0.4); border-radius:12px; border:groove #AD0A0A">
 		<!-- Begin HTML Searchbox Code -->
-        <form style="margin:0px 0px 10px 0px" method="get" action="search2"><img src="../IMAGENES/lupa.png" alt="search"  style="margin-bottom:-8px" title="Stevie Wonder search"/> <input style="background-color: #AFFCF8" name="q" size="18" value="" type="text"><button style="margin:0 0 0 3px; color: #fff; font-size:16px; font-weight: bold; border: #fff 2px solid; background-color: #4d90fe" type="submit">Search</button>
+        <form style="margin:0px 0px 10px 0px" method="get" action="search2"><img src="../IMAGENES/lupa.png" alt="search"  style="margin-bottom:-8px" title="Stevie Wonder search"/> <input style="background-color: #AFFCF8" name="q" size="18" value="" type="text" aria-label="Search"><button style="margin:0 0 0 3px; color: #fff; font-size:16px; font-weight: bold; border: #fff 2px solid; background-color: #4d90fe" type="submit">Search</button>
 <!-- End HTML Searchbox Code -->
 		&nbsp;&nbsp;&nbsp;<b>Original Spanish</b><a href="../"><img src="//cdn.steviewonder.es/IMAGENES/banderaesp.gif" alt="Original spanish version" title="Original spanish" border="1" height="18" width="33"></a> </form>
 
@@ -171,8 +171,8 @@
     </script>
               <center><p>
                 <form name="formulario">
-                  <select name="menu" onchange="irA(this)" style="background-color: #66CCFF; color: #000080; text-align: left";>
-                    <option selected="selected" value="">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Push to go &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Push to go...</option>
+                  <label>Push: <select name="menu" onchange="irA(this)" style="background-color: #66CCFF; color: #000080; text-align: left";>
+                    <option selected="selected" value="">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Push to go...</option>
                     <option value="mama-lula">Mama Lula: The light of Stevie</option>
                     <option value="colaboraciones/Ray-Charles">Wonder &amp; Ray Charles</option>
                     <option value="Michael-Jackson">The Soul of Michael Jackson</option>
@@ -229,7 +229,7 @@
 					<option value="KJLH">KJLH: radio station</option>
 					<option value="spot-dgt">Advertisement in Spain, If you drink...</option>
 					<option value="devotion-for-stevie">Devotion for Stevie</option>
-                  </select>
+                  </select></label>
                 </form>
               </p></center>
 			
